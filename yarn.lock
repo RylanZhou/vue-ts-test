@@ -806,7 +806,15 @@
     "@babel/types" "^7.4.4"
     esutils "^2.0.2"
 
-"@babel/runtime@^7.11.0", "@babel/runtime@^7.8.4":
+"@babel/runtime-corejs3@^7.11.2":
+  version "7.12.5"
+  resolved "https://registry.npmjs.org/@babel/runtime-corejs3/-/runtime-corejs3-7.12.5.tgz#ffee91da0eb4c6dae080774e94ba606368e414f4"
+  integrity sha512-roGr54CsTmNPPzZoCP1AmDXuBoNao7tnSA83TXTwt+UK5QVyh1DIJnrgYRPWKCF2flqZQXwa7Yr8v7VmLzF0YQ==
+  dependencies:
+    core-js-pure "^3.0.0"
+    regenerator-runtime "^0.13.4"
+
+"@babel/runtime@^7.11.0", "@babel/runtime@^7.11.2", "@babel/runtime@^7.8.4":
   version "7.12.5"
   resolved "https://registry.yarnpkg.com/@babel/runtime/-/runtime-7.12.5.tgz#410e7e487441e1b360c29be715d870d9b985882e"
   integrity sha512-plcc+hbExy3McchJCEQG3knOsuh3HH+Prx1P6cLIkET/0dLuQDEnrT+s27Axgc9bqfsmNUNHfscgMUdBpC9xfg==
@@ -2794,6 +2802,11 @@ core-js-compat@^3.6.5, core-js-compat@^3.8.0:
   dependencies:
     browserslist "^4.15.0"
     semver "7.0.0"
+
+core-js-pure@^3.0.0:
+  version "3.8.1"
+  resolved "https://registry.npmjs.org/core-js-pure/-/core-js-pure-3.8.1.tgz#23f84048f366fdfcf52d3fd1c68fec349177d119"
+  integrity sha512-Se+LaxqXlVXGvmexKGPvnUIYC1jwXu1H6Pkyb3uBM5d8/NELMYCHs/4/roD7721NxrTLyv7e5nXd5/QLBO+10g==
 
 core-js@^2.4.0:
   version "2.6.12"
@@ -8575,6 +8588,14 @@ vue@^2.6.11:
   version "2.6.12"
   resolved "https://registry.yarnpkg.com/vue/-/vue-2.6.12.tgz#f5ebd4fa6bd2869403e29a896aed4904456c9123"
   integrity sha512-uhmLFETqPPNyuLLbsKz6ioJ4q7AZHzD8ZVFNATNyICSZouqP2Sz0rotWQC8UNBF6VGSCs5abnKJoStA6JbCbfg==
+
+wangeditor@^4.6.1:
+  version "4.6.1"
+  resolved "https://registry.npmjs.org/wangeditor/-/wangeditor-4.6.1.tgz#5732b38a36e9716416796461508f98c206863bd6"
+  integrity sha512-wboL6EmNVdPPOarRa7HyqUZovkpK9kuOxCTgCBhNSLt/0c2S5RN3v7eZHYJubweyxdXbRD0Isf//K9zVc3H8iQ==
+  dependencies:
+    "@babel/runtime" "^7.11.2"
+    "@babel/runtime-corejs3" "^7.11.2"
 
 watchpack-chokidar2@^2.0.1:
   version "2.0.1"

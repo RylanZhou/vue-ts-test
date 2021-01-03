@@ -1,57 +1,59 @@
+<!-- App.vue -->
 <template>
   <div>
-    <div class="container">
-      <ul v-for="(queue, index) in queues" :key="index">
-        <li v-for="name in queue" :key="name">
-          {{ name }}
-        </li>
-      </ul>
+    <Navbar
+      :page-data="pageData"
+      @add="handleAddNewTab"
+      @change="setActiveIndex"
+    />
+    <div v-if="activeIndex === 0">
+      Calendar
     </div>
-    <el-button @click="addName" :loading="isLoading">Add</el-button>
+    <Page
+      v-else
+      :data="pageData[activeIndex]"
+      @save-1="handleSaveContent1"
+      @save-2="handleSaveContent2"
+    />
   </div>
 </template>
 
 <script lang="ts">
-import { Component, Vue, Watch } from 'vue-property-decorator'
+import { Component, Vue } from 'vue-property-decorator'
+import Navbar from './Navbar.vue'
+import Page from './Page.vue'
 
-@Component({ name: 'App' })
+@Component({ name: 'App', components: { Navbar, Page } })
 export default class App extends Vue {
-  queues: string[][] = [
-    ['Yvonne'],
-    ['Arnold', 'Valerie', 'Laura'],
-    [],
-    ['Jaden', 'Damien'],
+  // 所有页面数据
+  pageData: PageDataType[] = [
+    {
+      id: 'calendar',
+      tabName: 'Calendar',
+    },
   ]
-  queueIndex = 0
-  isLoading = false
+  // 当前展示的页面下标
+  activeIndex = 0
 
-  @Watch('queues')
-  private onQueuesChange() {
-    this.queueIndex = (this.queueIndex + 1) % this.queues.length
+  handleAddNewTab(tabName: string) {
+    this.pageData.push({
+      id: `${+new Date()}`,
+      tabName,
+      content1: '',
+      content2: '',
+    })
   }
 
-  async addName() {
-    this.isLoading = true
-    try {
-      const resp = await fetch(process.env.VUE_APP_REQUEST_URL + '/name')
-      const { data }: { data: string } = await resp.json()
-      this.queues[this.queueIndex].push(data)
-    } catch (error) {
-      console.log(error)
-    } finally {
-      this.isLoading = false
-    }
+  setActiveIndex(id: string) {
+    this.activeIndex = this.pageData.findIndex(each => each.id === id)
+  }
+
+  handleSaveContent1(content1: string) {
+    this.pageData[this.activeIndex].content1 = content1
+  }
+
+  handleSaveContent2(content2: string) {
+    this.pageData[this.activeIndex].content2 = content2
   }
 }
 </script>
-
-<style lang="scss">
-.container {
-  display: flex;
-  user-select: none;
-
-  ul {
-    flex: 1;
-  }
-}
-</style>
